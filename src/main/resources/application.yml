@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: E-Commerce
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecomdb?options=-c%20TimeZone=Asia/Kolkata
+    username: tanmay
+    password: tanmay
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
