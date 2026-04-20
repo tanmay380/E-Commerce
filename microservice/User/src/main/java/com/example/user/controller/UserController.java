@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserResponse> getUser(@PathVariable Long id){
+    public ResponseEntity<UserResponse> getUser(@PathVariable String id){
 //        Optional<User> user = userService.getUser(id);
 //        if (user == null){
 //            return ResponseEntity.notFound().build();
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<String> udpateUser(@PathVariable Long id, @RequestBody UserRequest user){
+    public ResponseEntity<String> udpateUser(@PathVariable String id, @RequestBody UserRequest user){
         boolean upadted = userService.updateUser(id, user);
         if (upadted) {
             return ResponseEntity.ok("updated successfully");

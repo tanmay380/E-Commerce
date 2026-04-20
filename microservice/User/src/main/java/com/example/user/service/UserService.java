@@ -47,15 +47,15 @@ public class UserService {
 
     }
 
-    public Optional<UserResponse> getUser(Long id) {
+    public Optional<UserResponse> getUser(String id) {
 //        return usersList.stream()
 //                .filter(user -> user.getId().equals(id))
 //                .findFirst();
-        return userRepository.findById(id)
+        return userRepository.findById(String.valueOf(id))
                 .map(this::mapUserToUserResponse);
     }
 
-    public boolean updateUser(Long id, UserRequest user) {
+    public boolean updateUser(String id, UserRequest user) {
 //       return usersList.stream()
 //               .filter(user1 -> user1.getId().equals(id))
 //               .findFirst()
@@ -66,7 +66,7 @@ public class UserService {
 //                       }
 //               )
 //               .orElse(false);
-        return userRepository.findById(id)
+        return userRepository.findById(String.valueOf(id))
                 .map(eu -> {
                     updateUserFromRequest(user, eu);
                     userRepository.save(eu);
