@@ -1,0 +1,17 @@
+spring:
+  datasource:
+#    url: jdbc:postgresql://ep-floral-haze-ao8mzl9f-pooler.c-2.ap-southeast-1.aws.neon.tech/product?sslmode=require&channel_binding=require
+#    url: jdbc:mysql://localhost:3307/tanmay
+    url: jdbc:postgresql://localhost:5432/product
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+server:
+  port: 8081

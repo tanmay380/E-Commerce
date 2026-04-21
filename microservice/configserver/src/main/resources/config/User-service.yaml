@@ -1,0 +1,6 @@
+spring:
+  mongodb:
+    uri: ${URL}
+    database: userdb
+server:
+  port: 8080
