@@ -27,6 +27,13 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponse> getProductByIdAndActiveTrue(@PathVariable String productId){
+        return productService.getProductByIdAndActiveTrue(productId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest){
         return productService.updateProduct(id, productRequest)

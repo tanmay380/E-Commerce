@@ -1,7 +1,11 @@
 package com.example.order.service;
 
 
+import com.example.order.clients.ProductServiceClient;
+import com.example.order.clients.UserServiceClient;
 import com.example.order.dto.CartItemRequest;
+import com.example.order.dto.ProductResponse;
+import com.example.order.dto.user.UserResponse;
 import com.example.order.model.CartItem;
 import com.example.order.repository.CartRepository;
 import jakarta.transaction.Transactional;
@@ -19,25 +23,26 @@ import java.util.Optional;
 @Transactional
 public class CartService {
     private final CartRepository cartRepository;
-//    private final ProductRepository productRepository;
+    private final ProductServiceClient productServiceClient;
+    private final UserServiceClient userServiceClient;
 //    private final UserRepository userRepository;
 
     public boolean addToCart(String userId, CartItemRequest request) {
-//        Optional<Product> product = productRepository.findById(request.getProductId());
-//        if (product.isEmpty()){
-//            System.out.println("Product not found");
-//            return false;
-//        }
-//        Product product1 = product.get();
-//        if (product1.getProductQuantity() < request.getQuantity()){
-//            System.out.println("Product quantity less than requested quantity");
-//            return false;
-//        }
+        ProductResponse product = productServiceClient.getProductDetails(request.getProductId());
+        if (product == null){
+            System.out.println("Product not found");
+            return false;
+        }
+        if (product.getProductQuantity() < request.getQuantity()){
+            System.out.println("Product quantity less than requested quantity");
+            return false;
+        }
 //
-//        Optional<User> user = userRepository.findById(Long.valueOf(userId));
-//        if (user.isEmpty()){
-//            return false;
-//        }
+        UserResponse user = userServiceClient.getUserDetails(userId);
+        if (user == null){
+            System.out.println("User not found");
+            return false;
+        }
 //
 //        User user1 = user.get();
 

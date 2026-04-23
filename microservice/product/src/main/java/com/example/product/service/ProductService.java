@@ -78,4 +78,9 @@ public class ProductService {
                 .map(this::mapToProductResponse)
                 .toList();
     }
+
+    public Optional<ProductResponse> getProductByIdAndActiveTrue(String productId) {
+        return  productRepository.getProductByIdAndActiveTrue(Long.valueOf(productId))
+                .map(this::mapToProductResponse);
+    }
 }
