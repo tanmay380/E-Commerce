@@ -1,4 +1,4 @@
-services:
+fservices:
   postgres:
     container_name: postgres_container
     image: postgres:15

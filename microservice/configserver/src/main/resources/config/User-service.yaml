@@ -1,9 +1,10 @@
 spring:
-  mongodb:
-    uri: ${URL}
-    database: userdb
+  data:
+    mongodb:
+      uri: mongodb+srv://tanmaysinghal380:tanmay@user-db.ggay0kn.mongodb.net/?appName=user-db
+      database: userdb
 server:
-  port: 8080
+  port: 8081
 
 management:
   endpoints:

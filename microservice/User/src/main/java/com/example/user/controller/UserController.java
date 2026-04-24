@@ -11,30 +11,30 @@ import java.util.List;
 
 @RestController()
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/users")
+    @PostMapping()
     public ResponseEntity<List<UserResponse>> createUser(@RequestBody UserRequest user) {
         userService.addUser(user);
         return ResponseEntity.ok(userService.getUsersList());
     }
 
-    @GetMapping("/users")
+    @GetMapping()
     public ResponseEntity<List<UserResponse>> getAllUsers(){
         return ResponseEntity.ok(userService.getUsersList());
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUser(@PathVariable String id){
         return  userService.getUser(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> udpateUser(@PathVariable String id, @RequestBody UserRequest user){
         boolean upadted = userService.updateUser(id, user);
         if (upadted) {
